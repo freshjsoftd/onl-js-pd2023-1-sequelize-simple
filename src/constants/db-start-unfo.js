@@ -232,8 +232,8 @@ module.exports = {
 			email: 's-k.gmail.com',
 		},
 		{
-			full_name: 'Ernest Hemingway',
-			email: 'e-h.gmail.com',
+			full_name: 'Theodore Dreiser',
+			email: 't-d.gmail.com',
 		},
 
 		/* ('Edgar Allan Poe','e-a-p.gmail.com'),
