@@ -54,11 +54,22 @@ const db = require('./db/models');
 	);
 	console.log(updatedAuthor); */
   // Destroy
-  await db.author.destroy({
+  /* await db.author.destroy({
     where: {
       id: {
         [Op.eq]: 2
       }
     }
-  })
+  }) */
+  // FindAll
+  const genres = await db.genre.findAll({
+		where: {
+			title: {
+				[Op.like]: 'D%',
+			},
+		},
+    attributes: ['title'],
+    raw: true,
+  });
+  console.log(genres);
 })();
