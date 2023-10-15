@@ -13,12 +13,22 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  nationality.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'nationality',
-  });
+  nationality.init(
+		{
+			title: {
+				type: DataTypes.STRING,
+				get() {
+					const rawValue = this.getDataValue(title);
+					return rawValue ? rawValue.toUpperCase() : null;
+				},
+			},
+			description: DataTypes.TEXT,
+		},
+		{
+			sequelize,
+			modelName: 'nationality',
+			timestamps: false,
+		}
+  );
   return nationality;
 };

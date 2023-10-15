@@ -11,14 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      shelf.hasMany(models.book, {
+			foreignKey: 'shelf_id',
+      onDelete: 'SET DEFAULT',
+		});
     }
   }
-  shelf.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'shelf',
-  });
+  shelf.init(
+		{
+			title: DataTypes.STRING,
+			description: DataTypes.TEXT,
+		},
+		{
+			sequelize,
+			modelName: 'shelf',
+			timestamps: false,
+		}
+  );
   return shelf;
 };

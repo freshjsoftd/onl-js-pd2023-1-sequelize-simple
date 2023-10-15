@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+			author.belongsToMany(models.book, {
+				through: 'authors_books',
+				timestamps: false,
+			});
     }
   }
   author.init(
@@ -19,16 +23,23 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 				unique: true,
+				validate: {
+					is: /^[A-Z]+$/,
+				},
 			},
 			email: {
 				type: DataTypes.STRING,
 				allowNull: false,
-				// unique: true,
+				unique: true,
+				validate: {
+					isEmail: true,
+				},
 			},
 		},
 		{
 			sequelize,
 			modelName: 'author',
+			timestamps: false,
 		}
   );
   return author;

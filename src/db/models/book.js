@@ -11,14 +11,36 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      book.belongsTo(models.genre, {foreignKey: 'genre_id'});
+      book.belongsTo(models.shelf, { foreignKey: 'shelf_id' });
+      book.belongsToMany(models.author, {
+			through: 'authors_books',
+			timestamps: false,
+		});
+      book.belongsToMany(models.order, {
+			through: 'orders_books',
+			timestamps: false,
+		});
     }
   }
-  book.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'book',
-  });
+  book.init(
+		{
+			title: DataTypes.STRING,
+			genre_id: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
+			shelf_id: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
+			description: DataTypes.TEXT,
+		},
+		{
+			sequelize,
+			modelName: 'book',
+			timestamps: false,
+		}
+  );
   return book;
 };

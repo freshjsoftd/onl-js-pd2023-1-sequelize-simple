@@ -11,14 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      order.belongsTo(models.customer, { foreignKey: 'customer_id' });
+      order.belongsToMany(models.book, {
+			through: 'orders_books',
+			timestamps: false,
+		});
     }
   }
-  order.init({
-    title: DataTypes.STRING,
-    order_date: DataTypes.DATEONLY
-  }, {
-    sequelize,
-    modelName: 'order',
-  });
+  order.init(
+		{
+			title: DataTypes.STRING,
+			order_date: DataTypes.DATEONLY,
+			customer_id: {
+				type: DataTypes.INTEGER,
+			},
+		},
+		{
+			sequelize,
+			modelName: 'order',
+			timestamps: false,
+		}
+  );
   return order;
 };

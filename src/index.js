@@ -35,6 +35,16 @@ const db = require('./db/models');
 		}
 	);
 	console.log(createdGenre); */
+	/* const national = await db.nationality.create(
+		{
+			title: 'javascript',
+		},
+		{
+			raw: true,
+			returning: ['id', 'title'],
+		}
+	);
+	console.log("National Is", national); */
 	// bulkCreate
 	/* await db.author.bulkCreate(authors, {
 		raw: true,
@@ -62,14 +72,17 @@ const db = require('./db/models');
     }
   }) */
   // FindAll
-  const genres = await db.genre.findAll({
+  const national = await db.nationality.findAll({
 		where: {
-			title: {
-				[Op.like]: 'D%',
-			},
+			id: 1,
 		},
-    attributes: ['title'],
-    raw: true,
+		attributes: ['title'],
+		raw: true,
+		returning: ['title'],
   });
-  console.log(genres);
+  console.log(national);
+	/* await db.customer.sync();
+	await db.order.sync();
+	await db.author.sync();
+	await db.book.sync(); */
 })();
