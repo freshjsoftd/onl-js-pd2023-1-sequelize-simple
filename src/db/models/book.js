@@ -15,20 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       book.belongsTo(models.shelf, { foreignKey: 'shelf_id' });
       book.belongsToMany(models.author, {
 			through: 'authors_books',
-			timestamps: false,
+			// timestamps: false,
 		});
       book.belongsToMany(models.order, {
 			through: 'orders_books',
-			timestamps: false,
+			// timestamps: false,
 		});
     }
   }
   book.init(
 		{
-			title: DataTypes.STRING,
+			title: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				unique: true
+			},
 			genre_id: {
 				type: DataTypes.INTEGER,
-				defaultValue: 0,
 			},
 			shelf_id: {
 				type: DataTypes.INTEGER,
@@ -39,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'book',
-			timestamps: false,
+			// timestamps: false,
 		}
   );
   return book;

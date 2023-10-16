@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 			author.belongsToMany(models.book, {
 				through: 'authors_books',
-				timestamps: false,
+				// timestamps: false,
 			});
     }
   }
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'author',
-			timestamps: false,
+			// timestamps: false,
 		}
   );
   return author;

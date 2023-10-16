@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       genre.hasMany(models.book, {
 			foreignKey: 'genre_id',
-      onDelete: 'SET DEFAULT',
+      onDelete: 'CASCADE',
       // onUpdate: 'SET DEFAULT',
 		});
     }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'genre',
-      timestamps: false
+      // timestamps: false
 		}
   );
   return genre;

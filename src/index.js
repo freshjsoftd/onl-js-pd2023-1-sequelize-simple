@@ -3,6 +3,7 @@ const db = require('./db/models');
 
 (async function () {
   const {Sequelize: {Op}} = db;
+	// await db.sequelize.sync({force: true});
 	const authors = [
 		{
 			full_name: 'Ernest Hemingway',
@@ -72,7 +73,7 @@ const db = require('./db/models');
     }
   }) */
   // FindAll
-  const national = await db.nationality.findAll({
+  /* const national = await db.nationality.findAll({
 		where: {
 			id: 1,
 		},
@@ -80,9 +81,13 @@ const db = require('./db/models');
 		raw: true,
 		returning: ['title'],
   });
-  console.log(national);
-	/* await db.customer.sync();
-	await db.order.sync();
-	await db.author.sync();
-	await db.book.sync(); */
+  console.log(national); */
+	// Magic methods or mixins
+	const [book1] = await db.book.findAll({where: {
+		id: 8
+	}});
+	const genreByBookId = await book1.getGenre()
+	console.log(genreByBookId);
+	// console.log(book1);
+	
 })();
