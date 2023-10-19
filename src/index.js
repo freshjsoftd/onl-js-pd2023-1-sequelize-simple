@@ -41,7 +41,7 @@ const db = require('./db/models');
 			title: 'javascript',
 		},
 		{
-			raw: true,
+			// raw: true,
 			returning: ['id', 'title'],
 		}
 	);
@@ -83,11 +83,17 @@ const db = require('./db/models');
   });
   console.log(national); */
 	// Magic methods or mixins
-	const [book1] = await db.book.findAll({where: {
+	/* const [book1] = await db.book.findAll({where: {
 		id: 8
 	}});
 	const genreByBookId = await book1.getGenre()
-	console.log(genreByBookId);
+	console.log(genreByBookId); */
 	// console.log(book1);
+
+	/* const national = await db.nationality.findByPk(1, {
+		attributes: ['id', 'title'],
+		// raw: true
+	})
+	console.log(national); */
 	
 })();

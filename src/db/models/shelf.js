@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       shelf.hasMany(models.book, {
 			foreignKey: 'shelf_id',
       onDelete: 'SET DEFAULT',
@@ -25,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'shelf',
-			// timestamps: false,
 		}
   );
   return shelf;

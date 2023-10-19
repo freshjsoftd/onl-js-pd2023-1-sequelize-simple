@@ -1,5 +1,5 @@
 'use strict';
-const { authors } = require('../../constants/db-start-unfo');
+const { authors } = require('../../constants/db-start-info');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {

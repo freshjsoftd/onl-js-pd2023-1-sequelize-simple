@@ -1,5 +1,5 @@
 'use strict';
-const { shelves } = require('../../constants/db-start-unfo');
+const { shelves } = require('../../constants/db-start-info');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

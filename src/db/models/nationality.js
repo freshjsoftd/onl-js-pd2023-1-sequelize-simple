@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				get() {
 					const rawValue = this.getDataValue(title);
-					return rawValue ? rawValue.toUpperCase() : null;
+					return rawValue ? rawValue.toUpperCase()  : null;
 				},
 			},
 			description: DataTypes.TEXT,

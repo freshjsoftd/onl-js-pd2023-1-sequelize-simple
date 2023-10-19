@@ -1,6 +1,6 @@
 'use strict';
 
-const { books } = require('../../constants/db-start-unfo');
+const { books } = require('../../constants/db-start-info');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
