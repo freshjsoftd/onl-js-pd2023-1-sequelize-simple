@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+			author.belongsTo(models.nationality, {foreignKey: 'nationality_id'})
 			author.belongsToMany(models.book, {
-				through: 'authors_books',
+				through: models.authors_books,
 				// timestamps: false,
 			});
     }
@@ -34,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					isEmail: true,
 				},
+			},
+			nationality_id: {
+				type: DataTypes.INTEGER,
 			},
 		},
 		{

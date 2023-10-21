@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -11,7 +12,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      customer.hasMany(models.order, { foreignKey: 'customer_id' });
+      customer.hasMany(models.order, {
+			foreignKey: 'customer_id',
+			onDelete: 'CASCADE',
+		});
     }
   }
   customer.init(
@@ -19,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
 			full_name: DataTypes.STRING,
 			email: DataTypes.STRING,
 			phone: DataTypes.STRING,
+			password: {
+				type: DataTypes.STRING,
+        set(value){
+          this.setDataValue('password', bcrypt.hashSync(value, 10));
+        }
+			},
 		},
 		{
 			sequelize,

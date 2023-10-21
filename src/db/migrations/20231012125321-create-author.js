@@ -19,6 +19,13 @@ module.exports = {
 			allowNull: false,
 			unique: true,
 		},
+		nationality_id: {
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'nationalities',
+				key: 'id'
+			}
+		},
 		createdAt: {
 			// allowNull: false,
 			type: Sequelize.DATE,

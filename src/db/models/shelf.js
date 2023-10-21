@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       shelf.hasMany(models.book, {
 			foreignKey: 'shelf_id',
-      onDelete: 'SET DEFAULT',
+      onDelete: 'CASCADE',
 		});
     }
   }

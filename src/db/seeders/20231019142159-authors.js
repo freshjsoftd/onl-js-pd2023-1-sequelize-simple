@@ -7,6 +7,6 @@ module.exports = {
 	},
 
 	async down(queryInterface, Sequelize) {
-		await queryInterface.bulkDelete('genauthorsres', null, {});
+		await queryInterface.bulkDelete('authors', null, {});
 	},
 };

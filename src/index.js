@@ -1,8 +1,11 @@
 const db = require('./db/models');
+const bcrypt = require('bcrypt');
 // const { Op } = require('sequelize');
 
 (async function () {
-  const {Sequelize: {Op}} = db;
+	const {
+		Sequelize: { Op },
+	} = db;
 	// await db.sequelize.sync({force: true});
 	const authors = [
 		{
@@ -36,6 +39,18 @@ const db = require('./db/models');
 		}
 	);
 	console.log(createdGenre); */
+	/* const createdCustomer = await db.customer.create(
+		{
+			full_name: 'Jhon Doe',
+			email: 'j-d@gmail.com',
+			password: 'awerty',
+		},
+		{
+			// raw: true,
+			returning: ['full_name', 'password'],
+		}
+	);
+	console.log(createdCustomer); */
 	/* const national = await db.nationality.create(
 		{
 			title: 'javascript',
@@ -64,16 +79,16 @@ const db = require('./db/models');
 		}
 	);
 	console.log(updatedAuthor); */
-  // Destroy
-  /* await db.author.destroy({
+	// Destroy
+	/* await db.author.destroy({
     where: {
       id: {
         [Op.eq]: 2
       }
     }
   }) */
-  // FindAll
-  /* const national = await db.nationality.findAll({
+	// FindAll
+	/* const national = await db.nationality.findAll({
 		where: {
 			id: 1,
 		},
@@ -95,5 +110,42 @@ const db = require('./db/models');
 		// raw: true
 	})
 	console.log(national); */
-	
+	// Use bcrypt
+	/* const password = 'QWerty';
+	const anotherOnePassword = 'asdfgh'
+	const hash = bcrypt.hashSync(password, 10);
+	console.log(hash);
+	const compareResult = bcrypt.compareSync(password, hash);
+	console.log(compareResult);
+	const compareResultOne = bcrypt.compareSync(anotherOnePassword, hash);
+	console.log(compareResultOne); */
+
+	// Use join
+	/* const authNat = await db.nationality.findAll({
+		where: {
+			id: [1, 5],
+		},
+		attributes: ['title'],
+		include: {
+			model: db.author,
+			attributes: [['full_name', 'login'], 'email'],
+			where: {
+				full_name: {
+					[Op.like]: 'S%'
+				}
+			}
+			// required: true
+		},
+		raw: true
+	});
+	console.log(JSON.stringify(authNat, null, 2)); */
+	// Magic methods
+	const nat = await db.nationality.findOne({
+		where: {
+			id: 1
+		},
+		
+	})
+	const numb = await nat.getAuthors();
+	console.log(numb[0]);
 })();
