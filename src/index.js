@@ -1,12 +1,22 @@
 // const http = require('http');
 require('dotenv').config();
+import cors from 'cors';
 
-const express = require('express');
+// const express = require('express');
+import express from 'express';
+
+import router from './routers'
 
 const db = require('./db/models');
 
 const app = express();
 const PORT  = process.env.PORT || 5000;
+
+app.use(express.json());
+app.use(cors());
+
+app.use('/api', router);
+
 
 const dbCheck = async () => {
 	try {
