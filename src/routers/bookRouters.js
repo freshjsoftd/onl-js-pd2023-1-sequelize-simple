@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import bookCtrl from '../controllers/bookControllers';
-import { paginate, validate } from '../middleware';
+import { paginate, validate, upload } from '../middleware';
 
 const bookRouter = new Router();
 
@@ -16,5 +16,9 @@ bookRouter
 	.get(bookCtrl.getBookById)
 	.delete(bookCtrl.deleteBook)
 	.patch(validate.validatePatchedBook, bookCtrl.changePartOfBook);
+
+bookRouter
+	.route('/:id/images')
+	.patch(upload.uploadBookImage.single('bookImage'), bookCtrl.changeBookImage);
 
 export default bookRouter;

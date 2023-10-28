@@ -28,8 +28,9 @@ module.exports = (sequelize, DataTypes) => {
 			title: {
 				type: DataTypes.STRING,
 				allowNull: false,
-				unique: true
+				unique: true,
 			},
+			image: DataTypes.STRING,
 			genre_id: {
 				type: DataTypes.INTEGER,
 			},
